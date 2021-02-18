@@ -1,4 +1,5 @@
 //Task*
+//
 // function sortFiles(link) {
 //     fs.readdir(link, (err, files) => {
 //       err ? console.log(err) : null;
@@ -29,7 +30,8 @@
 //
 // sort(randomFile);
 
-
+//Normal Task
+//
 // const fs = require('fs');
 // const path = require('path');
 //
