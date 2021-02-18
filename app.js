@@ -39,19 +39,19 @@ const dirGenders = path.join(__dirname, 'dir', 'genders')
 
 fs.writeFile(dirGendersFemale, '{"gender": "female"}', err => {
     if (err) {
-        console.log(err)
+        console.log(err);
     }
 });
 
 fs.writeFile(dirGendersMale, '{"gender": "male"}', err => {
     if (err) {
-        console.log(err)
+        console.log(err);
     }
 });
 
 fs.readdir(derGenderKarina, (err, files) => {
     if (err) {
-        console.log(err)
+        console.log(err);
     }
     console.log(files);
 });
@@ -64,7 +64,7 @@ fs.readFile(derGenderKarina, (err, data) => {
 
 fs.readdir(dirGenders, (err, files) => {
     if (err) {
-        console.log(err)
+        console.log(err);
     }
     console.log(files);
 
@@ -84,7 +84,7 @@ fs.readdir(dirGenders, (err, files) => {
 
 fs.readdir(dirGenders, (err, files) => {
     if (err) {
-        console.log(err)
+        console.log(err);
     }
     console.log(files);
 
