@@ -91,7 +91,7 @@ fs.readdir(dirGenders, (err, files) => {
     files.map(fileName => {
         fs.readFile(path.join(dirGenders, fileName), (err1, data) => {
             console.log(fileName);
-            
+
             if (JSON.parse(data).gender === "female") {
                 fs.rename(path.join(__dirname, 'dir', 'genders', fileName), path.join(__dirname, 'dir', '1800', fileName), err2 => {
                     if (err2) {
