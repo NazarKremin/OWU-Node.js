@@ -1,0 +1,1 @@
+[{"nickname":"Zak","email":"admin","password":"1111"},{"nickname":"s","email":"s","password":"s"},{"nickname":"1","email":"1","password":"1"},{"nickname":"мм","email":"мм","password":"мм"},{"nickname":"4","email":"4","password":"4"}]
