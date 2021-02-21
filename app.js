@@ -72,29 +72,29 @@ app.post('/login', (req, res) => {
 
         if (logIn === -1) {
             res.redirect('/register');
-            return
+            return;
         } else {
             res.redirect(`/users/${logIn}`)
         }
     });
 });
 
-app.get('/users/:usersId',(req, res) => {
+app.get('/users/:userId', (req, res) => {
     const {userId} = req.params;
 
-    fs.readFile(path.join(__dirname,'users.txt'),(err, data) => {
-       if (err){
-           console.log(err);
-           return;
-       }
-       const userDataId = JSON.parse(data.toString());
+    fs.readFile(path.join(__dirname, 'users.txt'), (err, data) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        const userDataId = JSON.parse(data.toString());
         console.log(userDataId[userId]);
 
-       res.render('users',{users:userDataId[userId]});
+        res.json(userDataId[userId]);
     });
 });
 
-app.get('/error',(req, res) => {
+app.get('/error', (req, res) => {
     res.render('error');
 });
 
