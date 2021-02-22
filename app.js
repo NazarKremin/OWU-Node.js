@@ -35,7 +35,7 @@ const path = require('path');
 
 const dirGendersFemale = path.join(__dirname, 'dir', 'genders', 'Karina.txt');
 const dirGendersMale = path.join(__dirname, 'dir', 'genders', 'Oleg.txt');
-const dirGenders = path.join(__dirname, 'dir', 'genders')
+const dirGenders = path.join(__dirname, 'dir', 'genders');
 
 fs.writeFile(dirGendersFemale, '{"gender": "female"}', err => {
     if (err) {
