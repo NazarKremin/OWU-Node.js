@@ -1,5 +1,6 @@
-const userService = require('../service/user.service');
 const fs = require('fs-extra');
+
+const userService = require('../service/user.service');
 
 module.exports = {
 
@@ -53,9 +54,9 @@ module.exports = {
     },
     searchUser: async (req, res) => {
         try {
-            const  {email,nickname}=req.body
+            const {name} = req.params;
 
-            const searchUser = await userService.searchUser(email,nickname);
+            const searchUser = await userService.searchUser(name);
 
             res.json(searchUser);
 

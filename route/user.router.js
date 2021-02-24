@@ -11,6 +11,6 @@ router.post('/', userMiddleware.isUserTrue, userController.createUser);
 
 router.delete('/:userId', userMiddleware.userCheckId, userController.deleteUser);
 
-router.post('/searchUser', userMiddleware.userFindIsTrue, userController.searchUser);
+router.post('/searchUser/:name', userMiddleware.userFindIsTrue, userController.searchUser);
 
 module.exports = router;

@@ -10,7 +10,6 @@ module.exports = {
 
     isUserTrue: (req, res, next) => {
         try {
-
             const {name, email, preferL = 'en'} = req.body;
 
             if (email.length < 8) {
@@ -22,7 +21,6 @@ module.exports = {
             }
 
             next();
-
         } catch (e) {
             res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
@@ -30,7 +28,6 @@ module.exports = {
 
     userCheckId: (req, res, next) => {
         try {
-
             const userId = +req.params.userId;
 
             if (userId < 0 || !Number.isInteger(userId) || Number.isNaN(userId)) {
@@ -39,7 +36,6 @@ module.exports = {
             }
 
             next();
-
         } catch (e) {
             res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
@@ -47,7 +43,6 @@ module.exports = {
 
     userFindIsTrue: async (req, res, next) => {
         try {
-
             const {email, name, preferL = 'en'} = req.body;
 
             const check = await fs.readJson(userData);
@@ -59,7 +54,6 @@ module.exports = {
                 throw new Error(errorMessage.WRONG_NAME[preferL] && errorMessage.EMAIL_IS_WRONG[preferL]);
             }
             next();
-
         } catch (e) {
             res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
