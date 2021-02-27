@@ -10,7 +10,7 @@ module.exports = {
 
     isUserTrue: (req, res, next) => {
         try {
-            const {name, email, preferL = 'en'} = req.body;
+            const { name, email, preferL = 'en' } = req.body;
 
             if (email.length < 8) {
                 throw new Error(errorMessage.EMAIL_IS_WRONG[preferL]);
@@ -31,8 +31,7 @@ module.exports = {
             const userId = +req.params.userId;
 
             if (userId < 0 || !Number.isInteger(userId) || Number.isNaN(userId)) {
-
-                throw new Error(errorMessage.WRONG_ID["en"]);
+                throw new Error(errorMessage.WRONG_ID.en);
             }
 
             next();
@@ -43,14 +42,13 @@ module.exports = {
 
     userFindIsTrue: async (req, res, next) => {
         try {
-            const {email, name, preferL = 'en'} = req.body;
+            const { email, name, preferL = 'en' } = req.body;
 
             const check = await fs.readJson(userData);
 
-            const isTrue = check.find(value => value.email === email || value.name === name);
+            const isTrue = check.find((value) => value.email === email || value.name === name);
 
             if (isTrue === undefined) {
-
                 throw new Error(errorMessage.WRONG_NAME[preferL] && errorMessage.EMAIL_IS_WRONG[preferL]);
             }
             next();

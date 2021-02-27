@@ -1,12 +1,11 @@
 const express = require('express');
-const path = require('path');
 
 const app = express();
 
 const apiRouter = require('./route/api.router');
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use('/', apiRouter);
 
 app.listen(5000, () => {

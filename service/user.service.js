@@ -4,9 +4,7 @@ const path = require('path');
 const userData = path.join(process.cwd(), 'dataBase', 'user.json');
 
 module.exports = {
-    allUsers: () => {
-        return fs.readJson(userData);
-    },
+    allUsers: () => fs.readJson(userData),
 
     createUser: async (userObj) => {
         const newUser = await fs.readJson(userData);
@@ -19,6 +17,7 @@ module.exports = {
     userById: async (userId) => {
         const userById = await fs.readJson(userData);
 
+        // eslint-disable-next-line no-return-await
         return await userById[userId];
     },
 
@@ -27,12 +26,14 @@ module.exports = {
 
         removeUserById.splice(userId, 1);
 
+        // eslint-disable-next-line no-return-await
         return await fs.writeJson(userData, removeUserById);
     },
     searchUser: async (name) => {
         const search = await fs.readJson(userData);
 
-        const value = search.find(value => value.name === name);
+        // eslint-disable-next-line no-shadow
+        const value = search.find((value) => value.name === name);
         console.log(value);
 
         return search[value];
