@@ -15,4 +15,12 @@ module.exports = {
         en: 'This mail wrong, try again',
         ua: 'Цей мейл невірний, попробуй ще раз.'
     },
+    NOT_VALID_MODEL: {
+        en: 'This not valid model',
+        ua: 'Чоловіче ти щось переплутав'
+    },
+    NOT_VALID_PRICE: {
+        en: 'Wrong price',
+        ua: 'А ти не перебільшуєш?'
+    }
 };

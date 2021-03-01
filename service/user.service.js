@@ -1,41 +1,14 @@
-const fs = require('fs-extra');
-const path = require('path');
-
-const userData = path.join(process.cwd(), 'dataBase', 'user.json');
+const userData = require('../dataBase/models/User');
+require('../dataBase/models/Car');
 
 module.exports = {
-    allUsers: () => fs.readJson(userData),
+    allUsers: () => userData.find(),
 
-    createUser: async (userObj) => {
-        const newUser = await fs.readJson(userData);
+    createUser: (userObj) => userData.create(userObj),
 
-        newUser.push(userObj);
+    userById: (userId) => userData.findById(userId),
 
-        return await fs.writeJson(userData, newUser);
-    },
+    deleteUserById: (userId) => userData.findByIdAndDelete(userId),
 
-    userById: async (userId) => {
-        const userById = await fs.readJson(userData);
-
-        // eslint-disable-next-line no-return-await
-        return await userById[userId];
-    },
-
-    deleteUserById: async (userId) => {
-        const removeUserById = await fs.readJson(userData);
-
-        removeUserById.splice(userId, 1);
-
-        // eslint-disable-next-line no-return-await
-        return await fs.writeJson(userData, removeUserById);
-    },
-    searchUser: async (name) => {
-        const search = await fs.readJson(userData);
-
-        // eslint-disable-next-line no-shadow
-        const value = search.find((value) => value.name === name);
-        console.log(value);
-
-        return search[value];
-    },
+    findByOption: (FindThisOptions) => userData.find(FindThisOptions),
 };

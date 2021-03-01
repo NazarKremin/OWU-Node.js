@@ -1,14 +1,11 @@
 const userService = require('../service/user.service');
 
 module.exports = {
-
     createUser: async (req, res) => {
         try {
-            const userObj = req.body;
+            await userService.createUser(req.body);
 
-            const userCreated = await userService.createUser(userObj);
-
-            res.json(userCreated);
+            res.status(201).json('User done');
         } catch (e) {
             res.status(418).json(e.message);
         }
@@ -37,22 +34,20 @@ module.exports = {
     },
     deleteUser: async (req, res) => {
         try {
-            const { userId } = req.params;
+            const { carId } = req.params;
 
-            await userService.deleteUserById(userId);
+            await userService.deleteUserById(carId);
 
             res.json('User removed');
         } catch (e) {
             res.status(418).json(e.message);
         }
     },
-    searchUser: async (req, res) => {
+    getUserByOptions: async (req, res) => {
         try {
-            const { name } = req.params;
+            const lookOnThisUser = await userService.findByOption(req.query);
 
-            const searchUser = await userService.searchUser(name);
-
-            res.json(searchUser);
+            res.json(lookOnThisUser);
         } catch (e) {
             res.status(418).json(e.message);
         }
