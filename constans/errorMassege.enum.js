@@ -22,5 +22,9 @@ module.exports = {
     NOT_VALID_PRICE: {
         en: 'Wrong price',
         ua: 'А ти не перебільшуєш?'
+    },
+    EMAIL_ALLREADY_USE: {
+        en: 'Email already use',
+        ua: 'Цей мейл вже використовується'
     }
 };
