@@ -34,9 +34,9 @@ module.exports = {
     },
     deleteUser: async (req, res) => {
         try {
-            const { carId } = req.params;
+            const { userId } = req.params;
 
-            await userService.deleteUserById(carId);
+            await userService.deleteUserById(userId);
 
             res.json('User removed');
         } catch (e) {
