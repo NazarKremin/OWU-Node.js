@@ -34,4 +34,14 @@ module.exports = {
             res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
     },
+    isUserHave: (req, res, next) => { 
+        try { 
+            const { email } = req.body; 
+            
+            if (!email) {
+                throw new Error(errorMessage.EMAIL_ALLREADY_USE.en); 
+            
+            next(); 
+            } catch (e) { 
+                res.status(errorCodes.BAD_REQUEST).json(e.message); } }
 };
