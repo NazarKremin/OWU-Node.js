@@ -3,6 +3,8 @@ require('../dataBase/models/Car');
 
 module.exports = {
     allUsers: () => userData.find(),
+    
+    findUsers: (query) => User.find(query),
 
     createUser: (userObj) => userData.create(userObj),
 
@@ -10,5 +12,4 @@ module.exports = {
 
     deleteUserById: (userId) => userData.findByIdAndDelete(userId),
 
-    findByOption: (FindThisOptions) => userData.find(FindThisOptions),
 };
