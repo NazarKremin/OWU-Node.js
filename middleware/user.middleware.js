@@ -30,4 +30,5 @@ module.exports = {
             res.status(errorCodes.BAD_REQUEST).json(e.message);
         }
     },
+
 };

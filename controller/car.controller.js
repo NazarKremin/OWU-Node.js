@@ -1,4 +1,4 @@
-const carService = require('../service/car.service');
+const { carService } = require('../service');
 
 module.exports = {
     createCar: async (req, res) => {
