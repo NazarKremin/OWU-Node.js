@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 const apiRouter = require('./route/api.router');
+const { PORT, MONGO_DB } = require('./config/config');
 
 _connectDB();
 
@@ -11,12 +12,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', apiRouter);
 
-app.listen(5000, () => {
-    console.log('Server work');
+app.listen(PORT, () => {
+    console.log(`Server Work ${PORT}`);
 });
 
 function _connectDB() {
-    mongoose.connect('mongodb://localhost:27017/my-app', { useNewUrlParser: true, useUnifiedTopology: true });
+    mongoose.connect(MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
 
     const { connection } = mongoose;
 

@@ -1,5 +1,6 @@
 const errorCodes = require('../constans/errorCodes.enum');
 const errorMessage = require('../constans/errorMassege.enum');
+const { carValidators } = require('../validator');
 
 module.exports = {
     carCheckId: (req, res, next) => {
@@ -18,14 +19,10 @@ module.exports = {
 
     isCarTrue: (req, res, next) => {
         try {
-            const { model, price } = req.body;
+            const { error } = carValidators.createCarValidator.validate(req.body);
 
-            if (!model) {
-                throw new Error(errorMessage.NOT_VALID_MODEL.en);
-            }
-
-            if (price < 0 || !Number.isInteger(price)) {
-                throw new Error(errorMessage.NOT_VALID_PRICE.en);
+            if (error) {
+                throw new Error(error.details[0].message);
             }
 
             next();

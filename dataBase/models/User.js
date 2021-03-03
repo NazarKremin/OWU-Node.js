@@ -1,8 +1,12 @@
 const { Schema, model } = require('mongoose');
 
+// const { dataBaseEnum: { USER } } = require('../../constans');// Чомусь не бачить і вибиває ерору
+
 const userSchema = new Schema({
     name: { type: String, required: true },
     age: { type: Number, default: 15 },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
     car: [{ type: Schema.Types.ObjectId }],
 }, { timestamps: true, toObject: { virtuals: true }, toJSON: { virtuals: true } });
 

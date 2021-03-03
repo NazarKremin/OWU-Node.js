@@ -1,9 +1,14 @@
 const userService = require('../service/user.service');
+const { passwordHasher } = require('../helper');
 
 module.exports = {
     createUser: async (req, res) => {
         try {
-            await userService.createUser(req.body);
+            const { password } = req.body;
+
+            const hashPassword = await passwordHasher.hash(password);
+
+            await userService.createUser({ ...req.body, password: hashPassword });
 
             res.status(201).json('User done');
         } catch (e) {

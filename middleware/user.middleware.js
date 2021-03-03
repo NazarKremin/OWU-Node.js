@@ -1,20 +1,16 @@
 const errorCodes = require('../constans/errorCodes.enum');
 const errorMessage = require('../constans/errorMassege.enum');
+const { userValidators } = require('../validator');
 
 module.exports = {
 
     isUserTrue: (req, res, next) => {
         try {
-            const { name, email, preferL = 'en' } = req.body;
+            const { error } = userValidators.createUserValidator.validate(req.body);
 
-            if (email.length < 8) {
-                throw new Error(errorMessage.EMAIL_IS_WRONG[preferL]);
+            if (error) {
+                throw new Error(error.details[0].message);
             }
-
-            if (!name || email) {
-                throw new Error(errorMessage.HERE_NOTHING[preferL]);
-            }
-
             next();
         } catch (e) {
             res.status(errorCodes.BAD_REQUEST).json(e.message);

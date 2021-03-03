@@ -8,4 +8,6 @@ module.exports = {
     carById: (carId) => carData.findById(carId),
 
     deleteCarById: (carId) => carData.findByIdAndDelete(carId),
+
+    updateCar: (carId, data) => carData.findOneAndUpdate(carId, data),
 };

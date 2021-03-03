@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
 const userController = require('../controller/user.controller');
-const userMiddleware = require('../middleware/user.middleware');
+const { userMiddleware } = require('../middleware');
 
 router.get('/', userMiddleware.isUserTrue, userController.getAllUsers);
 
-router.get('/:userId', userController.getUserById);
+router.get('/:userId', userMiddleware.isUserTrue, userController.getUserById);
 
 router.post('/', userMiddleware.isUserTrue, userController.createUser);
 
