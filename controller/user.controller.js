@@ -51,5 +51,16 @@ module.exports = {
         } catch (e) {
             res.status(418).json(e.message);
         }
-    }
+    },
+     findUsers: async (req, res) => {
+        try {
+            const filter = req.query;
+
+            const users = await userService.findUsers(filter);
+
+            res.status(201).json('User find');
+        } catch (e) {
+            res.status(418).json(e.message);
+        }
+    },
 };
