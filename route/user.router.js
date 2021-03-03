@@ -13,4 +13,6 @@ router.delete('/:userId', userMiddleware.userCheckId, userController.deleteUser)
 
 router.get('/', userController.getUserByOptions);
 
+router.get('/', userController.getUsers);
+
 module.exports = router;
