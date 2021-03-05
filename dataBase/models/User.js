@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-// const { dataBaseEnum: { USER } } = require('../../constans');// Чомусь не бачить і вибиває ерору
+const { dataBaseScheme: { USER } } = require('../../constans');
 
 const userSchema = new Schema({
     name: { type: String, required: true },
@@ -28,4 +28,4 @@ userSchema
         this.populate('cars');
     });
 
-module.exports = model('User', userSchema);
+module.exports = model(USER, userSchema);
