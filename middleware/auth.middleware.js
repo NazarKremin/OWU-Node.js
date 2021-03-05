@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET, JWT_REFRESH_SECRET } = require('../config/config');
+const { AUTHORIZATION } = require('../constans/constanta');
 
 const { authService } = require('../service');
 
@@ -19,12 +21,12 @@ module.exports = {
     },
     checkAccessToken: async (req, res, next) => {
         try {
-            const access_token = req.get('Authorization');
+            const access_token = req.get(AUTHORIZATION);
 
             if (!access_token) {
                 throw new Error('Token is required');
             }
-            jwt.verify(access_token, 'JWT_SECRET', (err) => {
+            jwt.verify(access_token, JWT_SECRET, (err) => {
                 if (err) {
                     throw new Error('Not Valid token');
                 }
@@ -42,12 +44,12 @@ module.exports = {
     },
     checkRefreshToken: async (req, res, next) => {
         try {
-            const refresh_token = req.get('Authorization');
+            const refresh_token = req.get(AUTHORIZATION);
 
             if (!refresh_token) {
                 throw new Error('Token is required');
             }
-            jwt.verify(refresh_token, 'JWT_SECRET', (err) => {
+            jwt.verify(refresh_token, JWT_REFRESH_SECRET, (err) => {
                 if (err) {
                     throw new Error('Not Valid token');
                 }

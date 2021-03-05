@@ -44,6 +44,10 @@ module.exports = {
             await userService.deleteUserById(userId);
 
             res.json('User removed');
+
+            if (userId !== req.user._id.toString()) {
+                throw new Error('АВТОРИЗУЙСЯ');
+            }
         } catch (e) {
             res.status(418).json(e.message);
         }
