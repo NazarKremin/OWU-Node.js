@@ -56,7 +56,7 @@ module.exports = {
             await mailService.sendMail(users.email, emailAction.USER_BLOCKED, {
                 userName: users.email
             });
-            console.log('Email Send');
+            res('Email Send');
         } catch (e) {
             res.status(418).json(e.message);
         }
