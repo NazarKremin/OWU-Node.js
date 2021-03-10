@@ -8,10 +8,10 @@ router.get('/', userMiddleware.isUserTrue, userController.getAllUsers);
 
 router.get('/:userId', userMiddleware.isUserTrue, userController.getUserById);
 
-router.post('/', userMiddleware.isUserTrue, userController.createUser);
+router.post('/', userMiddleware.isUserExist, userController.createUser);
 
 router.delete('/:userId', authMiddleware.checkAccessToken, userController.deleteUser);
 
-router.post('/', userController.getUserByOptions);
+// router.post('/', userController.getUserByOptions);
 
 module.exports = router;

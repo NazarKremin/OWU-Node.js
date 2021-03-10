@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+
+const ErrorHandler = require('../constans/errorHandler');
 const { JWT_SECRET, JWT_REFRESH_SECRET } = require('../config/config');
 const { AUTHORIZATION } = require('../constans/constanta');
 
@@ -33,7 +35,7 @@ module.exports = {
             });
             const tokens = await authService.authFindTokenUser(access_token);
             if (!tokens) {
-                throw new Error('Not valid token');
+                throw new ErrorHandler('Not valid token', 418);
             }
             req.user = tokens._user_id;
             console.log(tokens);
@@ -47,16 +49,16 @@ module.exports = {
             const refresh_token = req.get(AUTHORIZATION);
 
             if (!refresh_token) {
-                throw new Error('Token is required');
+                throw new ErrorHandler('Token is required', 418);
             }
             jwt.verify(refresh_token, JWT_REFRESH_SECRET, (err) => {
                 if (err) {
-                    throw new Error('Not Valid token');
+                    throw new ErrorHandler('Not Valid token', 418);
                 }
             });
             const tokens_refresh = await authService.authFindTokenUser(refresh_token);
             if (!tokens_refresh) {
-                throw new Error('Not valid token');
+                throw new ErrorHandler('Not valid token', 418);
             }
             req.tokens = tokens_refresh._user_id;
             next();

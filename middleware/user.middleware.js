@@ -1,5 +1,6 @@
 const errorCodes = require('../constans/errorCodes.enum');
 const errorMessage = require('../constans/errorMassege.enum');
+const userService = require('../service');
 const { userValidators } = require('../validator');
 
 module.exports = {
@@ -31,4 +32,20 @@ module.exports = {
         }
     },
 
+    isUserExist: async (req, res, next) => {
+        try {
+            const { email } = req.params;
+            const { preferL = 'en' } = req.query;
+
+            const user = await userService.userService.findByOption(email);
+
+            if (!user) {
+                throw new Error(errorMessage.EMAIL_IS_WRONG[preferL]);
+            }
+
+            next();
+        } catch (e) {
+            res.status(errorCodes.BAD_REQUEST).json(e.message);
+        }
+    },
 };

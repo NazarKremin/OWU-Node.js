@@ -10,5 +10,5 @@ module.exports = {
 
     deleteUserById: (userId) => userData.findByIdAndDelete(userId),
 
-    findByOption: (FindThisOptions) => userData.find(FindThisOptions),
+    findByOption: (email) => userData.find(email),
 };

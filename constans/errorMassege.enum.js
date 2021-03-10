@@ -8,7 +8,7 @@ module.exports = {
         ua: 'Не правильне імя, спробуй щераз'
     },
     WRONG_ID: {
-        en: 'This id is wrong<pls try again.',
+        en: 'This id is wrong pls try again.',
         ua: 'Це неправильне айді, попробуй ще раз'
     },
     EMAIL_IS_WRONG: {
