@@ -45,7 +45,7 @@ module.exports = {
     deleteUser: async (req, res) => {
         try {
             const { userId } = req.params;
-            const { email } = req.body;
+            const users = await userService.userById(userId);
 
             if (userId !== req.user._id.toString()) {
                 throw new Error('АВТОРИЗУЙСЯ');
@@ -53,10 +53,8 @@ module.exports = {
 
             await userService.deleteUserById(userId);
 
-            res.json('User removed');
-
-            await mailService.sendMail(email, emailAction.USER_BLOCKED, {
-                userName: email
+            await mailService.sendMail(users.email, emailAction.USER_BLOCKED, {
+                userName: users.email
             });
             console.log('Email Send');
         } catch (e) {

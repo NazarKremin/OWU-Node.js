@@ -10,7 +10,7 @@ router.get('/:userId', userMiddleware.isUserTrue, userController.getUserById);
 
 router.post('/', userMiddleware.isUserExist, userController.createUser);
 
-router.delete('/:userId', authMiddleware.checkAccessToken, userController.deleteUser);
+router.delete('/:userId', authMiddleware.checkAccessToken, userMiddleware.isUserExist, userController.deleteUser);
 
 // router.post('/', userController.getUserByOptions);
 
