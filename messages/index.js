@@ -1,3 +1,4 @@
 module.exports = {
-    errorMessages: require('./messages.enum')
+    errorMessages: require('./messages.enum'),
+    errorHandler: require('./errorHandler'),
 };

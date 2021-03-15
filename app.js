@@ -14,11 +14,21 @@ _connectDb();
 
 const { apiRouter } = require('./router');
 
-app.use(fileUpload);
+app.use(fileUpload());
 app.use(experess.json());
 app.use(experess.urlencoded({ extended: true }));
 
 app.use('/', apiRouter);
+
+// eslint-disable-next-line no-unused-vars
+app.use('*', (err, req, res, next) => {
+    res
+        .status(err.status || 500)
+        .json({
+            code: err.customCode || 0,
+            message: err.message || ''
+        });
+});
 
 app.listen(PORT, () => console.log('Server work'));
 

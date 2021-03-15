@@ -3,6 +3,7 @@ const { Schema, model } = require('mongoose');
 const { USER } = require('../../constans/data-base-tables.enum');
 
 const userSchema = new Schema({
+    avatar: { type: String },
     name: { type: String, required: true },
     lastName: { type: String },
     email: { type: String, required: true },

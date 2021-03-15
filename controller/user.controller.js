@@ -1,21 +1,29 @@
 const { errorMessages } = require('../messages');
 const { errorCodesEnum } = require('../constans');
 const { emailActions } = require('../constans');
-const { userService, authService, mailService } = require('../service');
+const {
+    authService, fileService, mailService, userService,
+} = require('../service');
 const { passwordHash } = require('../helpers');
 
 module.exports = {
     createUser: async (req, res) => {
         try {
-            const { email, password } = req.body;
+            const { body: { password, email }, avatar } = req;
 
             const hasPassword = await passwordHash.hash(password);
 
-            await userService.creatingUser({ ...req.body, password: hasPassword });
+            const user = await userService.creatingUser({ ...req.body, password: hasPassword });
 
             await mailService.sendMail(email, emailActions.WELCOME, {
                 userName: email
             });
+
+            if (avatar) {
+                const uploadPath = await fileService.dirBuilder(avatar, avatar.name, 'photos', 'user', user._id);
+
+                await userService.updateUser(user._id, { avatar: uploadPath });
+            }
 
             res.status(errorMessages.CREATED.ua).json('User created');
         } catch (e) {

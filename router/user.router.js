@@ -1,16 +1,20 @@
 const router = require('express').Router();
 
 const { userController } = require('../controller');
-const { userMiddleware, authMiddleware } = require('../middleware');
+const { authMiddleware, fileMiddleware, userMiddleware } = require('../middleware');
 
-router.post('/', userController.createUser);
+router.post('/', fileMiddleware.isAvatarValid,
+    fileMiddleware.isFileValid,
+    userMiddleware.isUserValid,
+    userMiddleware.isUserExist,
+    userController.createUser);
 
-router.put('/:userId', userMiddleware.isUserUpdateValid, userController.updateUser);
+router.put('/:userId', userMiddleware.isUserUpdate, userController.updateUser);
 
 router.delete('/:userId', authMiddleware.checkAccessToken, userController.deleteUserById);
 
 router.get('/', userController.getAllUsers);
 
-router.get('/:userId', userController.getUserById);
+router.get('/:userId', userMiddleware.checkIsUserIdValid, userController.getUserById);
 
 module.exports = router;

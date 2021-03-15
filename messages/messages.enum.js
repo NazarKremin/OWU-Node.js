@@ -62,5 +62,9 @@ module.exports = {
     THIS_TOKEN_IS_NOT_VALID: {
         en: 'Token is not valid',
         ua: ' Token не не дійсний'
-    }
+    },
+    NOT_VALID_FILES: {
+        en: 'Not valid file',
+        ua: 'Не валдіний файл'
+    },
 };
